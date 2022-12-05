@@ -1,0 +1,29 @@
+{
+  "name": "mvc-node-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/index.js",
+    "dev": "concurrently \"nodemon ./src/index.js\" \"json-server --watch ./src/database/db.json --port 4002\"",
+    "server": "json-server --watch ./src/database/db.json --port 4002"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "json-server": "^0.17.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "helmet": "^6.0.1",
+    "loglevel": "^1.8.1",
+    "node-fetch-commonjs": "^3.2.4"
+  }
+}
