@@ -19,11 +19,15 @@
     "express": "^4.18.2",
     "json-server": "^0.17.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "standard": "^17.0.0"
   },
   "dependencies": {
     "helmet": "^6.0.1",
     "loglevel": "^1.8.1",
     "node-fetch-commonjs": "^3.2.4"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
   }
 }
