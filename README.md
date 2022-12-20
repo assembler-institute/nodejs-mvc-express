@@ -2,7 +2,7 @@
 
 ## Descripción
 
-This is a project that will serve as an example as a backend develop with Node.JS and Express using MVC.
+Este es un proyecto que servirá de ejemplo como backend desarrollado con Node.JS y Express usando MVC. En la carpeta **docs** tendrán dos archivos **.json** , uno para **Postman** y el otro para **Insomnia** con todas las request de manera que lo pueden importar en los respectivas apps y prueben los endpoints.
 
 ## Instalación
 
@@ -17,12 +17,10 @@ This is a project that will serve as an example as a backend develop with Node.J
     npm install
   ```
 
-- Configurar tu archivo .env de acuerdo al archivo .env.example para especificar el puesrto en donde se estará ejecutando este servidor
-
-- Por defecto el json-server irá a ejecutarse por el puerto 4002, si desea cambiarlo deberá cambiarlo en el scriot correspondiente en el package.json.
+- Configurar tu archivo .env de acuerdo al archivo .env.example para especificar el puerto en donde se estará ejecutando este servidor
 
 - ```
-    npm run dev
+    npm run start
   ```
 
 ## Autor

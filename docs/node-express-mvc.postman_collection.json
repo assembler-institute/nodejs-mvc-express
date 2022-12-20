@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "21a755fa-3a0d-486b-b076-275f68ac84cb",
+		"name": "node-express-mvc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24698228"
+	},
+	"item": [
+		{
+			"name": "updateAlbumByID",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"artist\": \"Nicky RomerossS\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4001/albums/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"albums",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addNewAlbum",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Trend\",\n\t\"imageUrl\": \"https://i.scdn.co/image/ab67616d0000b2732cf9821eb5087702a63330b5\",\n\t\"artist\": \"DrefQuila\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4001/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteAlbumByID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4001/albums/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"albums",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAlbumByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4001/albums/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"albums",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllAlbums",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4001/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
