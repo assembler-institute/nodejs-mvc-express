@@ -1,53 +1,81 @@
+const albumModel = require('../models/album.model')
+const authorModel = require('../models/author.model')
 
-const allAlbums = async (req, res, next) => {
+const getAllAlbums = async (req, res, next) => {
   try {
-    res.status(200).send({ status: 'OK', msg: 'All albums' })
+    const allAlbums = await albumModel.find({}).lean().exec()
+
+    res.status(200).send({ status: true, data: allAlbums })
   } catch (error) {
-    res.status(500).send({ status: 'FALSE' })
+    res.status(500).send({ status: false, msg: error.message })
   }
 }
 
-const singleAlbum = async (req, res, next) => {
+const createAlbum = async (req, res, next) => {
   const { id } = req.params
+  const { title, yearReleased, genre } = req.body
+
   try {
-    res.status(200).send({ status: 'OK', msg: `Get album with ID ${id}` })
+    const newAlbum = await albumModel.create({
+      title,
+      yearReleased,
+      genre
+    })
+
+    if (id) {
+      await authorModel
+        .updateOne(
+          { _id: id },
+          { $push: { albums: newAlbum._id } }
+        )
+    }
+
+    res.status(201).send({ status: true, data: newAlbum._id })
   } catch (error) {
-    res.status(500).send({ status: 'FALSE' })
+    res.status(500).send({ status: false, msg: error.message })
   }
 }
-
-const deleteAlbum = async (req, res, next) => {
+const getAlbumByID = async (req, res, next) => {
   const { id } = req.params
   try {
-    res.status(200).send({ status: 'OK', msg: `Deleted album with id ${id}` })
+    const album = await albumModel.findById(id).lean().exec()
+
+    res.status(200).send({ status: true, data: album })
   } catch (error) {
-    res.status(500).send({ status: 'FALSE' })
+    res.status(500).send({ status: false, msg: error.message })
   }
 }
 const updateAlbum = async (req, res, next) => {
   const { id } = req.params
-  const body = req.body
+  const { ...fields } = req.body
 
   try {
-    res.status(200).send({ status: 'OK', msg: `Updated album with id ${id}`, body })
+    const author = await albumModel.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          ...fields
+        }
+      },
+      { new: true }
+    ).lean().exec()
+
+    res.status(200).send({ status: true, data: author })
   } catch (error) {
-    res.status(500).send({ status: 'FALSE' })
+    res.status(500).send({ status: false, msg: error.message })
   }
 }
-const createAlbum = async (req, res, next) => {
-  const body = req.body
-
+const deleteAlbum = async (req, res, next) => {
+  const { id } = req.params
   try {
-    res.status(201).send({ status: 'OK', msg: 'Created new album', body })
+    const album = await albumModel.findOneAndDelete({ _id: id })
+
+    res.status(200).send({ status: true, data: album._id })
   } catch (error) {
-    res.status(500).send({ status: 'FALSE' })
+    res.status(500).send({ status: false, msg: error.message })
   }
 }
 
 module.exports = {
-  allAlbums,
-  singleAlbum,
-  deleteAlbum,
-  updateAlbum,
-  createAlbum
+  getAllAlbums, createAlbum, getAlbumByID, updateAlbum, deleteAlbum
 }

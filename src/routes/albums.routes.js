@@ -1,13 +1,11 @@
-const express = require('express')
+const albumRouter = require('express').Router()
 const albumsController = require('../controllers/albums.controller')
-const { checkParam, doubleCheckParam } = require('../middlewares/check-middleware')
-const router = express.Router()
 
-router
-  .get('/', albumsController.allAlbums)
-  .get('/:id', checkParam, doubleCheckParam, albumsController.singleAlbum)
-  .delete('/:id', checkParam, doubleCheckParam, albumsController.deleteAlbum)
-  .patch('/:id', checkParam, doubleCheckParam, albumsController.updateAlbum)
-  .post('/', albumsController.createAlbum)
+albumRouter
+  .get('/', albumsController.getAllAlbums)
+  .get('/:id', albumsController.getAlbumByID)
+  .delete('/:id', albumsController.deleteAlbum)
+  .patch('/:id', albumsController.updateAlbum)
+  .post('/:id', albumsController.createAlbum)
 
-module.exports = router
+module.exports = albumRouter

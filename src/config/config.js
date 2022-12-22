@@ -20,7 +20,7 @@ const CONFIG = {
       debug: logger.debug
     },
     db: {
-      url: 'http://localhost:4002/albums'
+      uri: process.env.MONGODB_URI_CLUSTER
     }
   },
   production: {
