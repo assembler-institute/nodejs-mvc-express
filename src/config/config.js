@@ -21,6 +21,11 @@ const CONFIG = {
     },
     db: {
       uri: process.env.MONGODB_URI_CLUSTER
+    },
+    auth0: {
+      client_origin: process.env.APP_ORIGIN,
+      audience: process.env.AUTH0_AUDIENCE,
+      issuer: process.env.AUTH0_ISSUER
     }
   },
   production: {

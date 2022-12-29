@@ -14,5 +14,11 @@ async function createUser (req, res, next) {
     res.status(500).send({ status: false, msg: error.message })
   }
 }
+async function publicPing (req, res, next) {
+  res.status(200).send({ status: true, msg: 'Public Ping' })
+}
+async function privatePing (req, res, next) {
+  res.status(200).send({ status: true, msg: 'Private Ping' })
+}
 
-module.exports = { createUser }
+module.exports = { createUser, publicPing, privatePing }
