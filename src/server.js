@@ -18,11 +18,11 @@ const corsOptions = {
 
 app.use(morgan('dev'))
 app.use(helmet())
-app.use(json())
+app.use(json({ limit: '50mb' }))
 app.use(cors(corsOptions))
 app.use('/album', albumsRoutes)
 app.use('/author', authorRoutes)
-app.use('/user', checkJwt, userRoutes)
+app.use('/user', userRoutes)
 app.use(errorMiddleware)
 
 module.exports = app

@@ -22,6 +22,10 @@ const UserSchema = Schema({
     required: [true, 'The password is required'],
     minlength: [8, 'The password is too short']
 
+  },
+  image: {
+    type: Object,
+    required: [true, 'The image is required']
   }
 })
 
