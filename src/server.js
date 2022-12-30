@@ -3,6 +3,7 @@ const helmet = require('helmet')
 const morgan = require('morgan')
 const { json } = require('body-parser')
 const cors = require('cors')
+const fileUpload = require('express-fileupload')
 
 const albumsRoutes = require('./routes/albums.routes')
 const authorRoutes = require('./routes/author.routes')
@@ -18,6 +19,12 @@ const corsOptions = {
 
 app.use(morgan('dev'))
 app.use(helmet())
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: './uploads'
+  })
+)
 app.use(json({ limit: '50mb' }))
 app.use(cors(corsOptions))
 app.use('/album', albumsRoutes)

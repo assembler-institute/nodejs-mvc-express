@@ -7,6 +7,7 @@ userRouter
   .get('/public', userController.publicPing)
   // .get('/private', checkJwt, userController.privatePing)
   .get('/private', userController.privatePing)
-  .post('/:id', userController.updateUserImage)
+  .patch('/:id', userController.updateUserImageWithBase64)
+  .patch('/upload/:id', userController.updateUserImageWithFileUpload)
 
 module.exports = userRouter

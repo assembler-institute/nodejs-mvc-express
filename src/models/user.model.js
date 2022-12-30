@@ -24,8 +24,8 @@ const UserSchema = Schema({
 
   },
   image: {
-    type: Object,
-    required: [true, 'The image is required']
+    public_id: String,
+    secure_url: String
   }
 })
 
