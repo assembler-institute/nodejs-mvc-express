@@ -8,7 +8,6 @@ const albumsRoutes = require('./routes/albums.routes')
 const authorRoutes = require('./routes/author.routes')
 const userRoutes = require('./routes/user.routes')
 const errorMiddleware = require('./middlewares/error.middleware')
-const { checkJwt } = require('./middlewares/check-middleware')
 
 const app = express()
 
@@ -22,7 +21,7 @@ app.use(json())
 app.use(cors(corsOptions))
 app.use('/album', albumsRoutes)
 app.use('/author', authorRoutes)
-app.use('/user', checkJwt, userRoutes)
+app.use('/user', userRoutes)
 app.use(errorMiddleware)
 
 module.exports = app

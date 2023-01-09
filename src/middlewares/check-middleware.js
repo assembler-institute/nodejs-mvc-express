@@ -15,15 +15,6 @@ const checkJwt = jwt({
   algorithms: ['RS256']
 })
 
-const checkAuth0Token = async (req, res, next) => {
-  const isAuthorized = await checkJwt(req, res, next)
-  console.log(isAuthorized)
-  if (isAuthorized) {
-    next()
-  }
-  res.status(401).send({ ok: false, msg: 'Not authorized' })
-}
-
 module.exports = {
-  checkJwt, checkAuth0Token
+  checkJwt
 }
