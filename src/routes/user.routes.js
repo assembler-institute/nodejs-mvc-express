@@ -8,6 +8,7 @@ userRouter
   // .get('/private', checkJwt, userController.privatePing)
   .get('/private', userController.privatePing)
   .patch('/:id', userController.updateUserImageWithBase64)
-  .patch('/upload/:id', userController.updateUserImageWithFileUpload)
+  .post('/upload/:id', userController.updateUserImageWithFileUpload)
+  .post('/upload/audio/:id', userController.updateUserAudioWithFileUpload)
 
 module.exports = userRouter

@@ -1,6 +1,6 @@
 const fs = require('fs-extra')
 const userModel = require('../models/user.model')
-const { cloudinary, uploadImage } = require('../utils/cloudinary')
+const { cloudinary, uploadImage, uploadAudioFile } = require('../utils/cloudinary')
 
 async function createUser (req, res, next) {
   const { firstName, email, password, image } = req.body
@@ -70,6 +70,7 @@ async function updateUserImageWithFileUpload (req, res, next) {
         },
         { new: true }
       ).lean().exec()
+
       await fs.unlink(req.files.image.tempFilePath)
       res.status(200).send({ status: true, data: updatedUser })
     }
@@ -78,4 +79,19 @@ async function updateUserImageWithFileUpload (req, res, next) {
   }
 }
 
-module.exports = { createUser, publicPing, privatePing, updateUserImageWithBase64, updateUserImageWithFileUpload }
+async function updateUserAudioWithFileUpload (req, res, next) {
+  const { id } = req.params
+  console.log('executed updateUserAudioWithFileUpload  ' + id)
+  try {
+    if (req.files?.audio) {
+      console.log(req.files?.audio)
+      const audioUploaded = await uploadAudioFile(req.files.audio.tempFilePath, req.files?.audio.name)
+      await fs.unlink(req.files.audio.tempFilePath)
+      res.status(200).send({ status: true, data: audioUploaded })
+    }
+  } catch (error) {
+    res.status(500).send({ status: false, msg: error.message })
+  }
+}
+
+module.exports = { createUser, publicPing, privatePing, updateUserImageWithBase64, updateUserImageWithFileUpload, updateUserAudioWithFileUpload }

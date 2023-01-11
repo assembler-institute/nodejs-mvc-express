@@ -22,7 +22,9 @@ app.use(helmet())
 app.use(
   fileUpload({
     useTempFiles: true,
-    tempFileDir: './uploads'
+    tempFileDir: './uploads',
+    limits: { fileSize: 10000000 }, // 10MB max file(s) size
+    abortOnLimit: true // default: false (if true, files will not be uploaded and an error event will be emitted)
   })
 )
 app.use(json({ limit: '50mb' }))
