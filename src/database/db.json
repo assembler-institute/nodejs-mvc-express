@@ -1,28 +1,10 @@
 {
   "albums": [
     {
-      "id": 2,
-      "name": "XXX (Bow Wow Wow)",
-      "imageUrl": "https://i.scdn.co/image/ab67616d0000b273256e16efc88a39e4795d5f32",
-      "artist": "C.Gambino"
-    },
-    {
-      "id": 3,
-      "name": "Stay A Little Longer",
-      "imageUrl": "https://i.scdn.co/image/ab67616d0000b2732cf9821eb5087702a63330b5",
-      "artist": "Nicky RomerossS"
-    },
-    {
       "id": 5,
       "name": "Vivaldi",
       "imageUrl": "https://i.scdn.co/image/ab67616d0000b273a7fc8699c8a8c6dc4b90c948",
       "artist": "Jesper Swärd"
-    },
-    {
-      "id": 6,
-      "name": "Velvet Pony Trax 11 part 2",
-      "imageUrl": "https://i.scdn.co/image/ab67616d0000b27347d2bc41f459a0422c3dfff5",
-      "artist": "Axel Boman"
     },
     {
       "id": 7,
@@ -119,6 +101,24 @@
       "imageUrl": "https://i.scdn.co/image/ab67616d0000b2732cf9821eb5087702a63330b5",
       "artist": "DrefQuila",
       "id": 22
+    },
+    {
+      "id": 3,
+      "name": "Stay A Little Longer",
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b2732cf9821eb5087702a63330b5",
+      "artist": "Hemliga Klubbe 2"
+    },
+    {
+      "id": 2,
+      "name": "XXX (Bow Wow Wow)",
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b273256e16efc88a39e4795d5f32",
+      "artist": "Hemliga Klubbe 5"
+    },
+    {
+      "id": 38,
+      "name": "Trend 2025",
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b2732cf9821eb5087702a63330b5",
+      "artist": "Dref Quila 2"
     }
   ]
 }
