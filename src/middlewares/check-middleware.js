@@ -1,7 +1,7 @@
 async function checkParam (req, res, next) {
   const { id } = req.params
   try {
-    id && console.log(`Check the id ${id}`)
+    id ? console.log(`Check the id ${id}`) : console.log('No id')
     next()
   } catch (error) {
     next(error)
@@ -11,8 +11,7 @@ async function checkParam (req, res, next) {
 async function doubleCheckParam (req, res, next) {
   const { id } = req.params
   try {
-    id && console.log(`Double check the id ${id}`)
-    next()
+    id < 4 && res.status(400).send({ message: 'Id is too low' })
   } catch (error) {
     next(error)
   }

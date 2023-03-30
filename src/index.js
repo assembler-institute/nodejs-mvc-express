@@ -1,11 +1,9 @@
 const app = require('./server')
 const config = require('./config/config')
-const connect = require('./db/connect')
+const logger = require('log4js').getLogger()
 
-connect().then(async function onServerInit () {
-  config.logger.info('DB connected')
+logger.level = 'debug'
 
-  app.listen(config.app.PORT, () => {
-    config.logger.info(`Server running at http://localhost:${config.app.PORT}`)
-  })
+app.listen(config.app.PORT, () => {
+  logger.info(`⚙️ Server running at http:localhost:${config.app.PORT}`)
 })

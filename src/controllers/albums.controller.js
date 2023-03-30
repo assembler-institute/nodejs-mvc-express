@@ -37,6 +37,10 @@ const createAlbum = async (req, res, next) => {
 }
 const getAlbumByID = async (req, res, next) => {
   const { id } = req.params
+
+  if (!id) res.status(400).send()
+
+  const newAlbums = albums.filter(album => album.id !== Number(id))
   try {
     const album = await albumModel.findById(id).lean().exec()
 
@@ -45,7 +49,7 @@ const getAlbumByID = async (req, res, next) => {
     res.status(500).send({ status: false, msg: error.message })
   }
 }
-const updateAlbum = async (req, res, next) => {
+const updateAlbumArtist = async (req, res, next) => {
   const { id } = req.params
   const { ...fields } = req.body
 
