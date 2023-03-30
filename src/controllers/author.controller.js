@@ -30,7 +30,11 @@ const getAuthorByID = async (req, res, next) => {
   try {
     const author = await authorModel.findById(id).populate('albums').lean().exec()
 
-    res.status(200).send({ status: true, data: author })
+    if (!author) {
+      res.status(204).send({ status: true, data: 'Not found' })
+    } else {
+      res.status(200).send({ status: true, data: author })
+    }
   } catch (error) {
     res.status(500).send({ status: false, msg: error.message })
   }

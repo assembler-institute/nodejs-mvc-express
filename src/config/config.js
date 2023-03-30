@@ -14,7 +14,7 @@ const CONFIG = {
       PORT: process.env.PORT || 4001
     },
     db: {
-      uri: process.env.MONGODB_URI_CLUSTER
+      uri: process.env.MONGODB_URI
     }
   },
   production: {
@@ -22,7 +22,7 @@ const CONFIG = {
       PORT: process.env.PORT || 4002
     },
     db: {
-      url: 'http://localhost:4002/albums'
+      url: process.env.MONGODB_URI
     }
   }
 }

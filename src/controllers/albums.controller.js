@@ -2,6 +2,7 @@ const albumModel = require('../models/album.model')
 const authorModel = require('../models/author.model')
 
 const getAllAlbums = async (req, res, next) => {
+  console.log('All Albums')
   try {
     const allAlbums = await albumModel.find({}).lean().exec()
 
@@ -40,7 +41,6 @@ const getAlbumByID = async (req, res, next) => {
 
   if (!id) res.status(400).send()
 
-  const newAlbums = albums.filter(album => album.id !== Number(id))
   try {
     const album = await albumModel.findById(id).lean().exec()
 
@@ -81,5 +81,5 @@ const deleteAlbum = async (req, res, next) => {
 }
 
 module.exports = {
-  getAllAlbums, createAlbum, getAlbumByID, updateAlbum, deleteAlbum
+  getAllAlbums, createAlbum, getAlbumByID, deleteAlbum, updateAlbumArtist
 }
