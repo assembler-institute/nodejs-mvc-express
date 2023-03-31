@@ -74,7 +74,16 @@ const deleteAlbum = async (req, res, next) => {
   try {
     const album = await albumModel.findOneAndDelete({ _id: id })
 
-    res.status(200).send({ status: true, data: album._id })
+    if (!album) res.status(404).send({ message: 'Album not found' })
+
+    const authors = await authorModel.find({ albums: id })
+
+    authors.forEach(async author => {
+      author.albums = author.albums.filter(album => album.toString() !== id)
+      await author.save()
+    })
+
+    res.status(200).send({ status: true })
   } catch (error) {
     res.status(500).send({ status: false, msg: error.message })
   }

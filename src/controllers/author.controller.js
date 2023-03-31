@@ -28,7 +28,11 @@ const createAuthor = async (req, res, next) => {
 const getAuthorByID = async (req, res, next) => {
   const { id } = req.params
   try {
-    const author = await authorModel.findById(id).populate('albums').lean().exec()
+    const author = await authorModel.findById(id).populate('albums', {
+      title: 1,
+      genre: 1
+      // _id: 0
+    }).lean().exec()
 
     if (!author) {
       res.status(204).send({ status: true, data: 'Not found' })
@@ -43,15 +47,19 @@ const updateAuthor = async (req, res, next) => {
   const { id } = req.params
   const { name } = req.body
   try {
-    const author = await authorModel.findOneAndUpdate(
-      { _id: id },
-      {
-        $set: {
-          name
-        }
-      },
-      { new: true }
-    ).lean().exec()
+    // const author = await authorModel.findOneAndUpdate(
+    //   { _id: id },
+    //   {
+    //     $set: {
+    //       name
+    //     }
+    //   },
+    //   { new: true }
+    // ).lean().exec()
+
+    const author = await authorModel.findById({ _id: id })
+    author.name = name
+    await author.save()
 
     res.status(200).send({ status: true, data: author })
   } catch (error) {
