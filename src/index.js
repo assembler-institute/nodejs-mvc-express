@@ -3,9 +3,9 @@ const config = require('./config/config')
 const connect = require('./db/connect')
 
 connect().then(async function onServerInit () {
-  config.logger.info('DB connected')
+  console.log('DB connected')
 
   app.listen(config.app.PORT, () => {
-    config.logger.info(`Server running at http://localhost:${config.app.PORT}`)
+    console.log(`Server running at http://localhost:${config.app.PORT}`)
   })
 })

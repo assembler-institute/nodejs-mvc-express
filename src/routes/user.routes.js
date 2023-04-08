@@ -6,6 +6,6 @@ userRouter
   .post('/', userController.createUser)
   .get('/public', userController.publicPing)
   .get('/private', checkJwt, userController.privatePing)
-  .get('/private', userController.privatePing)
+  .post('/auth', userController.authentication)
 
 module.exports = userRouter

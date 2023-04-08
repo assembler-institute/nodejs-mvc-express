@@ -1,8 +1,9 @@
 const albumRouter = require('express').Router()
 const albumsController = require('../controllers/albums.controller')
+const checkJWT = require('../middlewares/checkJWT')
 
 albumRouter
-  .get('/', albumsController.getAllAlbums)
+  .get('/', checkJWT, albumsController.getAllAlbums)
   .get('/:id', albumsController.getAlbumByID)
   .delete('/:id', albumsController.deleteAlbum)
   .patch('/:id', albumsController.updateAlbum)
