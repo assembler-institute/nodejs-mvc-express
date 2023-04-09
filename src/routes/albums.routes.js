@@ -1,9 +1,9 @@
 const albumRouter = require('express').Router()
 const albumsController = require('../controllers/albums.controller')
-const checkJWT = require('../middlewares/checkJWT')
+const verifyAuth = require('../middlewares/checkFirebaseToken')
 
 albumRouter
-  .get('/', checkJWT, albumsController.getAllAlbums)
+  .get('/', verifyAuth, albumsController.getAllAlbums)
   .get('/:id', albumsController.getAlbumByID)
   .delete('/:id', albumsController.deleteAlbum)
   .patch('/:id', albumsController.updateAlbum)
