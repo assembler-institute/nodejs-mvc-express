@@ -58,21 +58,34 @@ async function updateUserImageWithFileUpload (req, res, next) {
   try {
     if (req.files?.image) {
       const imageUploaded = await uploadImage(req.files.image.tempFilePath)
-      const updatedUser = await userModel.findOneAndUpdate(
-        { _id: id },
-        {
-          $set: {
-            image: {
-              public_id: imageUploaded.public_id,
-              secure_url: imageUploaded.secure_url
-            }
-          }
-        },
-        { new: true }
-      ).lean().exec()
+
+      const user = await userModel.findById(id)
+
+      user.image = {
+        public_id: imageUploaded.public_id,
+        secure_url: imageUploaded.secure_url
+      }
+
+      user.save()
+
+      console.log(imageUploaded)
+      // const updatedUser = await userModel.findOneAndUpdate(
+      //   { _id: id },
+      //   {
+      //     $set: {
+      //       image: {
+      //         public_id: imageUploaded.public_id,
+      //         secure_url: imageUploaded.secure_url
+      //       }
+      //     }
+      //   },
+      //   { new: true }
+      // ).lean().exec()
 
       await fs.unlink(req.files.image.tempFilePath)
-      res.status(200).send({ status: true, data: updatedUser })
+      res.status(200).send({ status: true, data: user })
+    } else {
+      res.status(200).send({ status: true, data: 'No file uploaded' })
     }
   } catch (error) {
     res.status(500).send({ status: false, msg: error.message })
@@ -82,12 +95,14 @@ async function updateUserImageWithFileUpload (req, res, next) {
 async function updateUserAudioWithFileUpload (req, res, next) {
   const { id } = req.params
   console.log('executed updateUserAudioWithFileUpload  ' + id)
+  console.log(req.body)
   try {
     if (req.files?.audio) {
-      console.log(req.files?.audio)
       const audioUploaded = await uploadAudioFile(req.files.audio.tempFilePath, req.files?.audio.name)
       await fs.unlink(req.files.audio.tempFilePath)
       res.status(200).send({ status: true, data: audioUploaded })
+    } else {
+      res.status(200).send({ status: true, data: 'No file uploaded' })
     }
   } catch (error) {
     res.status(500).send({ status: false, msg: error.message })

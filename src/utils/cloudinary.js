@@ -5,7 +5,15 @@ cloudinary.config(cloudinaryConfig)
 
 const uploadImage = async (imagePath) => {
   const imageUploaded = await cloudinary.uploader.upload(imagePath,
-    { resource_type: 'image', folder: 'profilePictures/', overwrite: true })
+    {
+      resource_type: 'image',
+      folder: 'profilePictures/',
+      gravity: 'east',
+      height: 300,
+      width: 300,
+      crop: 'scale',
+      overwrite: true
+    })
   return imageUploaded
 }
 const uploadAudioFile = async (audioFile, name) => {
