@@ -9,7 +9,6 @@ const albumsRoutes = require('./routes/albums.routes')
 const authorRoutes = require('./routes/author.routes')
 const userRoutes = require('./routes/user.routes')
 const errorMiddleware = require('./middlewares/error.middleware')
-const { checkJwt } = require('./middlewares/check-middleware')
 
 const app = express()
 

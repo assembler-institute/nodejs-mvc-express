@@ -31,7 +31,6 @@
     "fs-extra": "^11.1.0",
     "helmet": "^6.0.1",
     "jwks-rsa": "^3.0.0",
-    "loglevel": "^1.8.1",
     "mongoose": "6.8.1",
     "node-fetch-commonjs": "^3.2.4",
     "validator": "^13.7.0"
